@@ -1,0 +1,204 @@
+﻿<UserControl x:Class="WpfAppOpenGl.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <UserControl.Resources>
+        <!-- Стиль для Border -->
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <!-- Стиль для Button -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#444"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="MaxHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="80"/>
+        </Style>
+
+        <!-- Стиль для TextBox -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#444"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MaxHeight" Value="25"/>
+            <Setter Property="MaxWidth" Value="50"/>
+        </Style>
+
+        <!-- Стиль для TextBlock -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="2"/>
+
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid MaxWidth="600" MaxHeight="600" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="52*"/>
+                <RowDefinition Height="59*"/>
+                <RowDefinition Height="52*"/>                
+            </Grid.RowDefinitions>
+
+            <!-- Поворот по осям -->
+            <Border Grid.Column="0" Grid.Row="0">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Left">Поворот по:</TextBlock>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Row="0" Content="Оси X" Click="ButtonRotateX_Click"/>
+                            <Button Grid.Row="1" Content="Оси Y" Click="ButtonRotateY_Click"/>
+                            <Button Grid.Row="2" Content="Оси Z" Click="ButtonRotateZ_Click"/>
+                            <TextBox Grid.Column="1" Grid.RowSpan="3" Name="TextBoxRotateAngle"/>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+
+            <!-- ОПП по осям -->
+            <Border Grid.Column="0" Grid.Row="1" >
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Left">ОПП по:</TextBlock>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Row="0" Content="Оси X" Click="ButtonOPPX_Click"/>
+                            <Button Grid.Row="1" Content="Оси Y" Click="ButtonOPPY_Click"/>
+                            <Button Grid.Row="2" Content="Оси Z" Click="ButtonOPPZ_Click"/>
+                            <TextBox Grid.Column="1" Grid.RowSpan="3" x:Name="TextBoxOPP"/>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+
+            </Border>
+
+            <!-- Параллельный перенос -->
+            <Border Grid.Column="0" Grid.Row="2">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" TextAlignment="Center">Параллельный перенос</TextBlock>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.ColumnSpan="3" Grid.Row="0" Content="По координатам" Click="ButtonParallelTransfer_Click"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Center">X</TextBlock>
+                            <TextBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" x:Name="TextBoxParallelTransferX"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center">Y</TextBlock>
+                            <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" x:Name="TextBoxParallelTransferY"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="2" TextAlignment="Center">Z</TextBlock>
+                            <TextBox Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" x:Name="TextBoxParallelTransferZ"/>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+
+           
+
+            <!-- Косой сдвиг -->
+            <Border Grid.Column="1" Grid.RowSpan="2">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center">Косой сдвиг по</TextBlock>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Row="0" Content="Оси XY" Click="ButtonObliqueShiftXY_Click"/>
+                            <Button Grid.Row="1" Content="Оси XZ" Click="ButtonObliqueShiftXZ_Click"/>
+                            <Button Grid.Row="2" Content="Оси YX" Click="ButtonObliqueShiftYX_Click"/>
+                            <Button Grid.Row="3" Content="Оси YZ" Click="ButtonObliqueShiftYZ_Click"/>
+                            <Button Grid.Row="4" Content="Оси ZX" Click="ButtonObliqueShiftZX_Click"/>
+                            <Button Grid.Row="5" Content="Оси ZY" Click="ButtonObliqueShiftZY_Click"/>
+                            <TextBox Grid.Column="1" Grid.RowSpan="6" Name="TextBoxObliqueShiftFactor"/>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer >
+            </Border>
+
+            <!-- Масштабирование -->
+            <Border Grid.Column="1" Grid.Row="2">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Content="Масштабировать в" Click="ButtonScale_Click"/>
+                        <TextBox Grid.Row="1" x:Name="TextBoxScale"/>
+                    </Grid>
+                </ScrollViewer >
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

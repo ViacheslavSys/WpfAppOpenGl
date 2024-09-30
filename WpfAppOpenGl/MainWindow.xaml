@@ -1,0 +1,69 @@
+﻿<Window x:Class="WpfAppOpenGl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfAppOpenGl"
+        Title="MainWindow" Height="450" Width="800"
+        Background="#1e1e1e">
+    <Window.Resources>
+        <!-- Стиль для меню -->
+        <Style TargetType="Menu">
+            <Setter Property="Background" Value="#2d2d30"/>
+            <!-- Темный фон -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Белый текст -->
+        </Style>
+
+        <!-- Стиль для MenuItem (пункты меню) -->
+        <Style TargetType="MenuItem">
+            <Setter Property="Background" Value="#2d2d30"/>
+            <!-- Темный фон -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Белый текст -->
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3c3c3c"/>                   
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Темное меню -->
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="_Файл">
+                <MenuItem Header="_Открыть" Click="OpenFile_Click"/>
+                <MenuItem Header="_Изменить txt файл" Click="ChangeFile_Click"/>                
+                <Separator/>
+                <MenuItem Header="_Выход" Click="ExitForm_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Настройки">
+                <MenuItem Header="Вернуть к изначальному виду" Click="ReturnToTheOriginal_Click"/>
+            </MenuItem>
+            
+            <MenuItem Header="_Помощь">
+                <MenuItem Header="_О программе" Click="OpenInformation_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Основное содержимое окна -->
+        <Grid Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Рамка с OpenGL содержимым -->
+            <Border BorderBrush="#444" BorderThickness="5" Margin="10" CornerRadius="10">
+                <Grid>
+                    <local:OpenGLUserControl  x:Name="openGLUserControl" BorderThickness="5"/>
+                </Grid>
+            </Border>
+            <Grid Grid.Column="1">               
+                <local:MainMenu x:Name="mainMenu"/>
+            </Grid>           
+        </Grid>
+    </Grid>
+</Window>
